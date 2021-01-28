@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static 'script/sandbox.js' %}"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="wrapper">
+        <h1>JavaScript Practice</h1>
+        <div>
+            <h2>Display DateTime</h2>
+            <button type = "button" id="show_datetime"
+            onclick="document.getElementById('demo').innerHTML = Date()"> 
+            Click to display Date and Time</button>
+            <p id='demo'></p>
+        </div>
+
+        <div>
+            <h2>Change an HTML attribute value</h2>
+            <button id="on">Turn on the Light</button>
+            <img id="image_off" src="static/images/lightoff.jpg" alt="lightbulboff" style="width:100px">
+            <img id="image_on" src="static/images/lighton.jpg" alt="lightbulbon" style="width:100px">
+            <button id="off">Turn off the Light</button>
+        </div>
+
+        <div>
+            <h2>To Do List</h2>
+            <form action="/add_item" method="post">
+            {% csrf_token %}
+                <input type="text" name="to_do">
+                <button type ="submit">Add Item</button>
+            </form>
+
+            <ul>
+            {% for tasks in items %}
+                <li id="{{tasks.id}}">{{tasks.item}} </li>
+                <img id="done" src="static/images/check.jpg" alt="checkmark" style="width:15px">
+            {% endfor %}
+            </ul>
+        </div>
+
+        <div>
+            <h2>Mortgage Loan Calculator</h2>
+            <form action="">
+                <p>Loan Amount ($) <input type="number" id="loan" min="1" max="5000000"></p>
+
+                <p>Interest Rate (%) <input type="number" id="interest" min="0" max="100" value="10"></p>
+
+                <p>Months to Pay <input type="number" id="length" min="1" max="300"  value="1"></p>
+
+            </form>
+        </div>
+    </div>
+</body>
+</html>
